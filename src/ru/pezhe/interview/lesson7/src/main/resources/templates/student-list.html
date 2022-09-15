@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+</head>
+
+<body>
+<div>
+    <span th:if="${students.size() == 0}">Список пуст</span>
+    <div th:unless="${students.size() == 0}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">AGE</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student: ${students}">
+                <td th:text="${student.id}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.age}"></td>
+                <td>
+                    <a type="button" th:href="@{students/form(id=${student.id})}">EDIT</a>
+                </td>
+                <td>
+                    <a type="button" th:href="@{students/delete(id=${student.id})}">DELETE</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a type="button" th:href="@{students/form}">NEW</a>
+    </div>
+</div>
+
+</body>
+</html>
